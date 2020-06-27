@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block body %}
+	{% if item %}
+		<form class="form-inline my-2 my-lg-0" method="post" style="padding-left: 40%; padding-top: 50px;">
+			{% csrf_token %}
+			<input class="form-control mr-sm-2" type="text" value="{{item.content}}" name="item" autocomplete="off">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="submit">Edit</button>
+		</form>
+	{% endif %}
+{% endblock %}

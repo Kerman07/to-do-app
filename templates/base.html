@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+	{% if request.user.is_authenticated %}
+		<div class="mt-3 input-box">
+			<form class="form-inline my-2 my-lg-0" action="" method="post"> 	{% csrf_token %}
+				<input class="form-control mr-sm-2" type="text" placeholder="Item To Do" name="item" autocomplete="off">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="submit">Add</button>
+			</form>
+		</div>
+	{% endif %}
+
+	{% if request.user.is_authenticated %}
+		<table class="table table-striped">
+			{% for item in items %}
+				<tr>
+					<td class="col-6 align-middle">
+				 		{{ item.content }} 
+				 	</td>
+				 	<td class="col-3 align-middle">
+				 		<form method="post">
+				 			{% csrf_token %}
+				 			<button class="btn btn-outline-primary" name="edit" type="submit" value={{ item.id }}>Edit</button>
+				 		</form>
+				 	</td>
+				 	<td class="col-3 align-middle">
+				 		<form method="post">
+				 			{% csrf_token %}
+				 			<button class="btn btn-outline-danger" name="delete" type="submit" value={{ item.id }}>Delete</button>
+				 		</form>
+				 	</td>
+				</tr>
+			{% endfor %}	
+		</table>
+	{% else %}
+		<div class="card guest">
+			<h6 class="card card-text">Register for an account to have your own personalized to-do list</h6>
+		</div>
+	{% endif %}
+{% endblock %}

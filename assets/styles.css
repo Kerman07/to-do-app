@@ -1,0 +1,38 @@
+body:before {
+	content: "";
+	background-image: url('back.jpg');
+	z-index: -1;
+	position: absolute;
+	opacity: 0.4;
+	top: 0; bottom: 0; left: 0; right: 0;
+	background-size: cover;
+}
+
+.guest {
+	display: inline-block;
+	margin-left: 15rem;
+	margin-top: 3rem;
+}
+
+.card-text {
+	padding: 1rem;
+}
+
+.navbar {
+	background: url('back.jpg');
+	background-blend-mode: multiply;
+	border-bottom: 1px solid rgb(50, 50, 50);
+}
+
+.table-striped {
+	text-align: center; 
+	margin-top: 3em;
+}
+
+.input-box {
+	margin-left: 32%;
+}
+
+.form-control {
+	border: 1px solid rgb(50, 50, 50);
+}
