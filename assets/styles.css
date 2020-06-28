@@ -8,10 +8,22 @@ body:before {
 	background-size: cover;
 }
 
+.guest-1 {
+	padding-top: 0.5rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	text-align: center;
+}
+
 .guest {
-	display: inline-block;
-	margin-left: 15rem;
-	margin-top: 3rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	border: 1px solid rgb(50, 50, 50);
+	border-radius: 10px;
+	margin: 2rem;
 }
 
 .card-text {
@@ -19,6 +31,7 @@ body:before {
 }
 
 .navbar {
+	padding-top: 1rem;
 	background: url('back.jpg');
 	background-blend-mode: multiply;
 	border-bottom: 1px solid rgb(50, 50, 50);
@@ -30,7 +43,19 @@ body:before {
 }
 
 .input-box {
-	margin-left: 32%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.edit-box {
+	margin-top: 3rem;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1rem;
+	max-width: 50%;
 }
 
 .form-control {

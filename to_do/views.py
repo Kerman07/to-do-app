@@ -8,8 +8,11 @@ from .forms import UserForm
 def home(request):
     if request.method == 'GET':
         all_items = Item.objects.filter(author=request.user)
+        if not all_items and not request.user.is_authenticated:
+            all_items = [{'content': "Example to-do-item"},
+                         {'content': "Another example"},
+                         {'content': "Yet another example"}, ]
         context = {'items': all_items}
-        print(request.user.id)
         return render(request, "base.html", context)
     else:
         if 'item' in request.POST:
