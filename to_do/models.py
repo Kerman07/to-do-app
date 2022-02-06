@@ -1,14 +1,8 @@
 from django.db import models
-
-
-class ItemManager(models.Manager):
-    def create_item(self, content, author):
-        item = self.create(content=content, author=author)
-        return item
+from django.contrib.auth.models import User
 
 
 class Item(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
-    author = models.TextField()
-
-    objects = ItemManager()
+    
