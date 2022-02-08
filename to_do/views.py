@@ -14,5 +14,5 @@ class UserView(viewsets.ModelViewSet):
     queryset = User.objects.all()
 
 class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()
     serializer_class = RegisterSerializer
+    queryset = User.objects.all()
