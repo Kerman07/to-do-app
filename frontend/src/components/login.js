@@ -1,18 +1,26 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import userService from "../services/users.js";
+import Notification from "./notification.js";
+import { setNotification } from "../reducers/notificationReducer.js";
 
 const Login = ({ setRerender }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    const res = userService.loginUser({ username, password });
-    localStorage.setItem("REACT_TOKEN_AUTH", "Token " + res.token);
-    setRerender("r");
-    history.push("/home");
+    const res = await userService.loginUser({ username, password });
+    console.log(res);
+    if (res.token !== "") {
+      localStorage.setItem("REACT_TOKEN_AUTH", "Token " + res.token);
+      setRerender("r");
+      history.push("/home");
+    } else {
+      setNotification("username or password are not correct", 5000);
+      setRerender("c");
+    }
   };
 
   const usernameHandler = (event) => setUsername(event.target.value);
@@ -23,6 +31,7 @@ const Login = ({ setRerender }) => {
       <div className="container mt-5" style={{ marginLeft: "30%" }}>
         <div className="content-section col-6">
           <legend className="border-bottom mb-4">Log In</legend>
+          <Notification />
           <form onSubmit={handleLogin}>
             <label className="custom-field">
               <input
