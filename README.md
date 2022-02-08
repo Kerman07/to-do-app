@@ -7,4 +7,4 @@
 [django-to-do-application.herokuapp.com](https://django-to-do-application.herokuapp.com)
 
 # Sample Screen
-![IMG](assets/screen.png)
+![IMG](frontend/src/assets/screen.png)
