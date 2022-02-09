@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { setNotification } from "../reducers/notificationReducer";
 import userService from "../services/users";
+import Notification from "./notification";
 
 const Register = ({ setRerender }) => {
   const [username, setUsername] = useState("");
@@ -10,54 +13,66 @@ const Register = ({ setRerender }) => {
   const emailHandler = (event) => setEmail(event.target.value);
   const passwordHandler = (event) => setPassword(event.target.value);
 
+  const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleCreate = () => {
-    const response = userService.createUser({ username, email, password });
-    if (response !== "error") {
+  const handleCreate = async (event) => {
+    event.preventDefault();
+    const response = await userService.createUser({
+      username,
+      email,
+      password,
+    });
+    if ("error" in response) {
+      dispatch(setNotification(response["error"], 5000));
+    } else {
       setUsername("");
       setEmail("");
       setPassword("");
+      await userService.loginUser({ username, password });
+      history.push("/");
     }
-    history.push("/");
   };
 
   return (
-    <div className="container mt-5" style={{ marginLeft: "30%" }}>
-      <div className="content-section col-6">
+    <div className="container mt-5">
+      <div className="col-6 container">
         <legend className="border-bottom mb-4">Register</legend>
         <form onSubmit={handleCreate}>
-          <label className="custom-field">
-            <input
-              type="text"
-              id="username"
-              onChange={usernameHandler}
-              required
-            />
-            <span className="placeholder">Username:</span>
-          </label>
-
-          <label className="custom-field">
-            <input type="text" id="email" onChange={emailHandler} required />
-            <span className="placeholder">Email:</span>
-          </label>
-
-          <label className="custom-field">
-            <input
-              type="password"
-              id="password"
-              onChange={passwordHandler}
-              required
-            />
-            <span className="placeholder">Password:</span>
-          </label>
+          <div className="form-group">
+            <label className="custom-field">
+              <input
+                type="text"
+                id="username"
+                onChange={usernameHandler}
+                required
+              />
+              <span className="placeholder">Username:</span>
+            </label>
+          </div>
 
           <div className="form-group">
-            <button
-              className="btn btn-outline-danger"
-              style={{ marginLeft: "30%" }}
-              type="submit"
-            >
+            <label className="custom-field">
+              <input type="text" id="email" onChange={emailHandler} required />
+              <span className="placeholder">Email:</span>
+            </label>
+          </div>
+
+          <div className="form-group">
+            <label className="custom-field">
+              <input
+                type="password"
+                id="password"
+                onChange={passwordHandler}
+                required
+              />
+              <span className="placeholder">Password:</span>
+            </label>
+          </div>
+
+          <Notification />
+          <div className="form-group">
+            <button className="btn btn-outline-danger" type="submit">
               Register
             </button>
           </div>
@@ -66,7 +81,7 @@ const Register = ({ setRerender }) => {
           <small className="text-muted">
             Already have an account?{" "}
             <a className="ml-2" href="/login">
-              Log In Now
+              Log In
             </a>
           </small>
         </div>

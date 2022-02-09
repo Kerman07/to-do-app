@@ -13,12 +13,19 @@ const loginUser = async ({ username, password }) => {
 };
 
 const createUser = async ({ username, email, password }) => {
-  const response = await axios.post("/register/", {
-    username,
-    email,
-    password,
-  });
-  return response.status === 200 ? response.data : "error";
+  try {
+    const response = await axios.post("/register/", {
+      username,
+      email,
+      password,
+    });
+    return { username, password };
+  } catch (e) {
+    const errors = e.response.data;
+    if (errors.username) return { error: "username: " + errors.username };
+    if (errors.email) return { error: "email: " + errors.email[0] };
+    if (errors.password) return { error: errors.password[0] };
+  }
 };
 
 const userService = { createUser, loginUser };

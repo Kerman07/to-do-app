@@ -4,18 +4,33 @@
   box-sizing: border-box;
 }
 
-body:before {
+html,
+#root {
+  background: url(back.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+html::before {
+  opacity: 0.2;
+}
+
+/* body:before {
   content: "";
   background-image: url("back.jpg");
   z-index: -1;
   position: absolute;
-  opacity: 0.4;
+  opacity: 0.45;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   background-size: cover;
-}
+  width: 100%;
+  height: 100vh;
+} */
 
 .guest-1 {
   padding-top: 0.5rem;
@@ -72,7 +87,7 @@ body:before {
 }
 
 .custom-field {
-  margin-left: 10%;
+  /* margin-left: 15%; */
   margin-bottom: 25px;
   font-size: 13px;
   position: relative;
@@ -84,10 +99,10 @@ body:before {
   -ms-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: #f2f2f2;
+  background: #ccc;
   padding: 12px;
   border-radius: 3px;
-  width: 250px;
+  width: 100%;
   font-size: 14px;
 }
 
@@ -114,4 +129,18 @@ input:valid + .placeholder {
   top: -10px;
   font-size: 13px;
   color: #222;
+}
+
+.container {
+  width: auto;
+  margin: auto;
+}
+
+.form-group {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.text-muted {
+  font-size: 14px;
 }

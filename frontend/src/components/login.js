@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import userService from "../services/users.js";
 import Notification from "./notification.js";
 import { setNotification } from "../reducers/notificationReducer.js";
@@ -8,17 +9,17 @@ const Login = ({ setRerender }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const handleLogin = async (event) => {
+  const handleLogin =  async (event) => {
     event.preventDefault();
     const res = await userService.loginUser({ username, password });
-    console.log(res);
     if (res.token !== "") {
       localStorage.setItem("REACT_TOKEN_AUTH", "Token " + res.token);
       setRerender("r");
       history.push("/home");
     } else {
-      setNotification("username or password are not correct", 5000);
+      dispatch(setNotification("Username or password are not correct!", 5000));
       setRerender("c");
     }
   };
@@ -28,35 +29,41 @@ const Login = ({ setRerender }) => {
 
   return (
     <>
-      <div className="container mt-5" style={{ marginLeft: "30%" }}>
-        <div className="content-section col-6">
+      <div className="container mt-5">
+        <div className="col-6 container">
           <legend className="border-bottom mb-4">Log In</legend>
-          <Notification />
-          <form onSubmit={handleLogin}>
-            <label className="custom-field">
-              <input
-                type="text"
-                id="username"
-                onChange={usernameHandler}
-                required
-              />
-              <span className="placeholder">Username:</span>
-            </label>
 
-            <label className="custom-field">
-              <input
-                type="password"
-                id="password"
-                onChange={passwordHandler}
-                required
-              />
-              <span className="placeholder">Password:</span>
-            </label>
+          <form onSubmit={handleLogin}>
+            <div className="form-group">
+              <label className="custom-field">
+                <input
+                  type="text"
+                  id="username"
+                  onChange={usernameHandler}
+                  required
+                />
+                <span className="placeholder">Username:</span>
+              </label>
+            </div>
+
+            <div className="form-group">
+              <label className="custom-field">
+                <input
+                  type="password"
+                  id="password"
+                  onChange={passwordHandler}
+                  required
+                />
+                <span className="placeholder">Password:</span>
+              </label>
+            </div>
+
+            <Notification />
 
             <div className="form-group">
               <button
                 className="btn btn-outline-danger"
-                style={{ marginLeft: "30%" }}
+                style={{ display: "inline", float: "none" }}
                 type="submit"
               >
                 Log In
@@ -67,7 +74,7 @@ const Login = ({ setRerender }) => {
             <small className="text-muted">
               Don't have an account?{" "}
               <a className="ml-2" href="/register">
-                Sign Up Now
+                Sign Up
               </a>
             </small>
           </div>

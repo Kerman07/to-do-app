@@ -4,8 +4,15 @@ import { connect } from "react-redux";
 const Notification = (props) => {
   const style = {
     border: "solid",
-    padding: 10,
+    fontSize: 18,
+    padding: 5,
+    marginBottom: 15,
     borderWidth: 1,
+    borderColor: "red",
+    borderRadius: 5,
+    color: "red",
+    textAlign: "center",
+    verticalAlign: "middle",
   };
   if (props.notification !== "")
     return <div style={style}>{props.notification}</div>;
@@ -13,7 +20,7 @@ const Notification = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { notification: state.notification };
+  return { notification: state };
 };
 
 export default connect(mapStateToProps)(Notification);
