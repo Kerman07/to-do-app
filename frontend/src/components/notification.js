@@ -5,9 +5,10 @@ const Notification = (props) => {
   const style = {
     border: "solid",
     fontSize: 18,
+    fontWeight: 450,
     padding: 5,
     marginBottom: 15,
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: "red",
     borderRadius: 5,
     color: "red",
