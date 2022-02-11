@@ -6,6 +6,7 @@ const loginUser = async ({ username, password }) => {
       username,
       password,
     });
+    localStorage.setItem("REACT_TOKEN_AUTH", "Token " + response.data.token);
     return response.data;
   } catch (e) {
     return { token: "" };

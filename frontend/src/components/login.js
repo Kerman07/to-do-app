@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import userService from "../services/users.js";
 import Notification from "./notification.js";
@@ -11,11 +11,10 @@ const Login = ({ setRerender }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleLogin =  async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
     const res = await userService.loginUser({ username, password });
     if (res.token !== "") {
-      localStorage.setItem("REACT_TOKEN_AUTH", "Token " + res.token);
       setRerender("r");
       history.push("/home");
     } else {

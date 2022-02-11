@@ -3,7 +3,7 @@ import axios from "axios";
 import Login from "./components/login.js";
 import Home from "./components/home.js";
 import Register from "./components/register.js";
-import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const App = () => {
   const [items, setItems] = useState([]);
@@ -27,15 +27,11 @@ const App = () => {
       <Router>
         <Switch>
           <Route path="/home">
-            {localStorage.getItem("REACT_TOKEN_AUTH") ? (
-              <Home
-                setRerender={setRerender}
-                items={items}
-                deleteHandler={deleteHandler}
-              />
-            ) : (
-              <Redirect to="/" />
-            )}
+            <Home
+              setRerender={setRerender}
+              items={items}
+              deleteHandler={deleteHandler}
+            />
           </Route>
 
           <Route path="/register">

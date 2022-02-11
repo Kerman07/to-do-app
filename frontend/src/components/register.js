@@ -27,11 +27,11 @@ const Register = ({ setRerender }) => {
     if ("error" in response) {
       dispatch(setNotification(response["error"], 5000));
     } else {
-      setUsername("");
-      setEmail("");
-      setPassword("");
-      await userService.loginUser({ username: response.username, password: response.password });
-      history.push("/");
+      await userService.loginUser({
+        username: response.username,
+        password: response.password,
+      });
+      history.push("/home");
     }
   };
 
