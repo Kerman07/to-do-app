@@ -4,17 +4,17 @@ import Login from "./components/login.js";
 import Home from "./components/home.js";
 import Register from "./components/register.js";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import todoService from "./services/todos.js";
 
 const App = () => {
   const [items, setItems] = useState([]);
   // eslint-disable-next-line no-unused-vars
   const [rerender, setRerender] = useState("");
 
+  // todo: move this to component
   useEffect(() => {
-    axios.get("/api/todos/").then((response) => {
-      setItems(response.data);
-    });
-  }, []);
+    todoService.getTodos().then((response) => setItems(response));
+  }, [rerender]);
 
   const deleteHandler = (id) => {
     axios.delete(`/api/todos/${id}/`).then(() => {

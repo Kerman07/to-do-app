@@ -129,3 +129,8 @@ input:valid + .placeholder {
 .text-muted {
   font-size: 14px;
 }
+
+.new-todo {
+  margin: 0;
+  margin-top: 5%;
+}

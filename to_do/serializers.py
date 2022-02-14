@@ -6,11 +6,11 @@ from .models import Item
 
 
 class ItemSerializer(serializers.ModelSerializer):
-    author_username = serializers.CharField(source="author.username")
+    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Item
-        fields = ("id", "content", "author_username")
+        fields = ("id", "content", "author")
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -44,16 +44,16 @@ class RegisterSerializer(serializers.ModelSerializer):
     )
 
     class Meta:
-        model=User
-        fields=('username', 'email', 'password')
-    
+        model = User
+        fields = ("username", "email", "password")
+
     def create(self, validated_data):
         user = User.objects.create(
-            username=validated_data['username'],
-            email=validated_data['email'],
+            username=validated_data["username"],
+            email=validated_data["email"],
         )
 
-        user.set_password(validated_data['password'])
+        user.set_password(validated_data["password"])
         user.save()
 
         return user

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import userService from "../services/users.js";
 import Notification from "./notification.js";
