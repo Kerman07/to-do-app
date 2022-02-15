@@ -73,7 +73,7 @@ const Register = ({ setRerender }) => {
 
           <Notification />
           <div className="form-group">
-            <button className="btn btn-outline-danger" type="submit">
+            <button className="btn btn-success" type="submit">
               Register
             </button>
           </div>

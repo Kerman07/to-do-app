@@ -1,37 +1,31 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Login from "./components/login.js";
 import Home from "./components/home.js";
 import Register from "./components/register.js";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import todoService from "./services/todos.js";
+import { useDispatch } from "react-redux";
+import { getTodos } from "./reducers/todoReducer.js";
+import axios from "axios";
 
 const App = () => {
-  const [items, setItems] = useState([]);
   // eslint-disable-next-line no-unused-vars
   const [rerender, setRerender] = useState("");
+  const dispatch = useDispatch();
 
-  // todo: move this to component
   useEffect(() => {
-    todoService.getTodos().then((response) => setItems(response));
-  }, [rerender]);
-
-  const deleteHandler = (id) => {
-    axios.delete(`/api/todos/${id}/`).then(() => {
-      setItems(items.filter((item) => item.id !== id));
-    });
-  };
+    if (localStorage.getItem("LOGGED_USER")) {
+      axios.defaults.headers.common["Authorization"] =
+        localStorage.getItem("REACT_TOKEN_AUTH");
+      dispatch(getTodos());
+    }
+  }, [rerender, dispatch]);
 
   return (
     <div>
       <Router>
         <Switch>
           <Route path="/home">
-            <Home
-              setRerender={setRerender}
-              items={items}
-              deleteHandler={deleteHandler}
-            />
+            <Home setRerender={setRerender} />
           </Route>
 
           <Route path="/register">

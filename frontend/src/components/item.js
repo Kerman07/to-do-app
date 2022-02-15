@@ -1,38 +1,63 @@
 import { useState } from "react";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { updateTodo, deleteTodo } from "../reducers/todoReducer";
 
-const Item = ({ item, deleteHandler }) => {
+const Item = ({ item, setRerender }) => {
   const [edit, setEdit] = useState(false);
   const [content, setContent] = useState("");
-
-  const handleEdit = () => {
-    axios
-      .put(`/api/todos/${item.id}/`, { content, author: "Kera" })
-      .then((response) => {
-        setEdit(!edit);
-        item.content = content;
-        setContent("");
-      });
-  };
+  const dispatch = useDispatch();
 
   const handleChange = (event) => setContent(event.target.value);
 
+  const handleEdit = () => {
+    dispatch(updateTodo(item.id, content)).then(() => {
+      setRerender("edt");
+      setEdit(!edit);
+    });
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteTodo(item.id)).then(() => {
+      setRerender("dut");
+    });
+  };
+
   return (
     <>
-      <tr>
-        {edit ? (
-          <td className="col-6 align-middle">
-            <input type="text" onChange={handleChange}></input>
+      {edit ? (
+        <tr>
+          <td className="col-8 align-middle">
+            <input
+              type="text"
+              onChange={handleChange}
+              placeholder={item.content}
+              style={{ width: "100%" }}
+              required
+            ></input>
           </td>
-        ) : (
-          <td className="col-6 align-middle">{item.content}</td>
-        )}
-        {edit ? (
-          <td className="col-3 align-middle">
-            <input className="btn btn-outline-warning" type="submit" onClick={handleEdit}></input>
+          <td className="col-2 align-middle">
+            <button
+              className="btn btn-outline-success"
+              name="edit"
+              onClick={handleEdit}
+            >
+              Submit
+            </button>
           </td>
-        ) : (
-          <td className="col-3 align-middle">
+          <td className="col-2 align-middle">
+            <button
+              className="btn btn-outline-danger"
+              name="cancel"
+              onClick={() => setEdit(!edit)}
+            >
+              Cancel
+            </button>
+          </td>
+        </tr>
+      ) : (
+        <tr>
+          <td className="col-8 align-middle">{item.content}</td>
+          <td className="col-2 align-middle">
             <button
               className="btn btn-outline-primary"
               onClick={() => setEdit(!edit)}
@@ -40,17 +65,17 @@ const Item = ({ item, deleteHandler }) => {
               Edit
             </button>
           </td>
-        )}
-        <td className="col-3 align-middle">
-          <button
-            className="btn btn-outline-danger"
-            name="delete"
-            onClick={() => deleteHandler(item.id)}
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
+          <td className="col-2 align-middle">
+            <button
+              className="btn btn-outline-danger"
+              name="delete"
+              onClick={handleDelete}
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      )}
     </>
   );
 };

@@ -1,14 +1,16 @@
 import { useState } from "react";
-import todoService from "../services/todos";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../reducers/todoReducer";
 
-const NewTodo = () => {
+const NewTodo = ({ setRerender }) => {
   const [todo, setTodo] = useState("");
+  const dispatch = useDispatch();
 
   const handleCreate = async (event) => {
     event.preventDefault();
-    console.log(todo);
-    await todoService.createTodo(todo);
-    console.log(todo);
+    dispatch(addTodo(todo));
+    setTodo("");
+    setRerender("nt");
   };
 
   return (
@@ -20,6 +22,7 @@ const NewTodo = () => {
               type="text"
               id="todo"
               onChange={(e) => setTodo(e.target.value)}
+              value={todo}
               required
             />
             <span className="placeholder">New Todo:</span>
@@ -28,7 +31,7 @@ const NewTodo = () => {
 
         <div className="form-group">
           <button
-            className="btn btn-outline-danger"
+            className="btn btn-success"
             style={{ display: "inline", float: "none" }}
             type="submit"
           >

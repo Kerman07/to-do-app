@@ -48,7 +48,7 @@ html::before {
 
 .table-striped {
   text-align: center;
-  margin-top: 3em;
+  margin-top: 2em;
 }
 
 .input-box {
@@ -106,13 +106,13 @@ html::before {
 
 .custom-field input:focus + .placeholder {
   top: -10px;
-  font-size: 13px;
+  font-size: 14px;
   color: #222;
 }
 
 input:valid + .placeholder {
   top: -10px;
-  font-size: 13px;
+  font-size: 14px;
   color: #222;
 }
 
@@ -133,4 +133,18 @@ input:valid + .placeholder {
 .new-todo {
   margin: 0;
   margin-top: 5%;
+}
+
+.notif {
+  border: solid;
+  font-size: 18px;
+  font-weight: 450;
+  padding: 5px;
+  margin-bottom: 15px;
+  border-width: 2px;
+  border-color: red;
+  border-radius: 5px;
+  color: red;
+  text-align: center;
+  vertical-align: middle;
 }

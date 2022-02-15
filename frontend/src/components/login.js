@@ -61,7 +61,7 @@ const Login = ({ setRerender }) => {
 
             <div className="form-group">
               <button
-                className="btn btn-outline-danger"
+                className="btn btn-success"
                 style={{ display: "inline", float: "none" }}
                 type="submit"
               >

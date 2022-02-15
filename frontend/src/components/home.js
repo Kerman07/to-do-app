@@ -2,24 +2,34 @@ import Table from "./table.js";
 import { Redirect } from "react-router-dom";
 import NewTodo from "./newTodo.js";
 
-const Home = ({ setRerender, items, deleteHandler }) => {
+const Home = ({ setRerender }) => {
   return (
     <>
       {localStorage.getItem("REACT_TOKEN_AUTH") ? (
         <div>
-          <button
-            style={{ float: "right", margin: 10 }}
-            className="nav-link btn btn-danger"
-            onClick={() => {
-              localStorage.removeItem("REACT_TOKEN_AUTH");
-              localStorage.removeItem("LOGGED_USER");
-              setRerender("c");
+          <div
+            style={{
+              margin: "5px 10px 0px",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
-            Logout
-          </button>
-          <NewTodo />
-          <Table items={items} deleteHandler={deleteHandler} />
+            <div>Welcome {localStorage.getItem("LOGGED_USER")},</div>
+            <button
+              className="nav-link btn btn-info"
+              onClick={() => {
+                localStorage.removeItem("REACT_TOKEN_AUTH");
+                localStorage.removeItem("LOGGED_USER");
+                setRerender("c");
+              }}
+            >
+              Logout
+            </button>
+          </div>
+
+          <NewTodo setRerender={setRerender} />
+          <Table setRerender={setRerender} />
         </div>
       ) : (
         <Redirect to="/" />

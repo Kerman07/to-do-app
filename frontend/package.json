@@ -44,6 +44,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^11.2.7",
-    "cypress": "^9.4.1"
+    "cypress": "^9.4.1",
+    "redux-devtools-extension": "^2.13.9"
   }
 }
