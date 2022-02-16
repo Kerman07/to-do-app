@@ -19,6 +19,7 @@ from .views import ItemView, RegisterView, UserView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from rest_framework import routers
 from rest_framework.authtoken import views
+from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
 router.register(r"todos", ItemView, "todo")
@@ -29,6 +30,7 @@ urlpatterns = [
     path("api/", include(router.urls)),
     path("register/", RegisterView.as_view()),
     path("api-token-auth/", views.obtain_auth_token),
+    path("", TemplateView.as_view(template_name="index.html")),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
