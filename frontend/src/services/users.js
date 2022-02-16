@@ -16,7 +16,7 @@ const loginUser = async ({ username, password }) => {
 
 const createUser = async ({ username, email, password }) => {
   try {
-    await axios.post("/register/", {
+    await axios.post("/user/register/", {
       username,
       email,
       password,

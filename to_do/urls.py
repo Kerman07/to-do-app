@@ -28,7 +28,7 @@ router.register(r"users", UserView, "user")
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
-    path("register/", RegisterView.as_view()),
+    path("/user/register/", RegisterView.as_view()),
     path("api-token-auth/", views.obtain_auth_token),
     path("", TemplateView.as_view(template_name="index.html")),
 ]
