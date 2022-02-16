@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import Login from "./components/login.js";
-import Home from "./components/home.js";
-import Register from "./components/register.js";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getTodos } from "./reducers/todoReducer.js";
 import axios from "axios";
+import Login from "./components/login.js";
+import Home from "./components/home.js";
+import Register from "./components/register.js";
 
 const App = () => {
   // eslint-disable-next-line no-unused-vars

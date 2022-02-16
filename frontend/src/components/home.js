@@ -8,8 +8,8 @@ const Home = ({ setRerender }) => {
       {localStorage.getItem("REACT_TOKEN_AUTH") ? (
         <div>
           <div
+            className="navbar"
             style={{
-              margin: "5px 10px 0px",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
@@ -17,7 +17,7 @@ const Home = ({ setRerender }) => {
           >
             <div>Welcome {localStorage.getItem("LOGGED_USER")},</div>
             <button
-              className="nav-link btn btn-info"
+              className="btn btn-sm btn-link"
               onClick={() => {
                 localStorage.removeItem("REACT_TOKEN_AUTH");
                 localStorage.removeItem("LOGGED_USER");
@@ -27,6 +27,7 @@ const Home = ({ setRerender }) => {
               Logout
             </button>
           </div>
+          
 
           <NewTodo setRerender={setRerender} />
           <Table setRerender={setRerender} />

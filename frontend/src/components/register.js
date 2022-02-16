@@ -23,7 +23,6 @@ const Register = ({ setRerender }) => {
       email,
       password,
     });
-    console.log(response);
     if ("error" in response) {
       dispatch(setNotification(response["error"], 5000));
     } else {

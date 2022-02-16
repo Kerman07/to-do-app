@@ -94,8 +94,7 @@ html::before {
 .custom-field .placeholder {
   position: absolute;
   left: 15px;
-  /* bottom: 50%; */
-  top: 22px;
+  top: 25px;
   transform: translateY(-60%);
   width: calc(100% - 24px);
   color: #444;
@@ -147,4 +146,35 @@ input:valid + .placeholder {
   color: red;
   text-align: center;
   vertical-align: middle;
+}
+
+.btn-success {
+  background-color: #168612;
+}
+
+.flexbox {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 10px;
+}
+
+#todo {
+  height: 100%;
+}
+
+.create-btn {
+  width: auto;
+  margin-left: 2%;
+}
+
+.table td {
+  padding: 0.5rem;
+}
+
+.navbar {
+	padding-top: 1rem;
+	background: url('back.png');
+	background-blend-mode: multiply;
+	border-bottom: 1px solid rgb(50, 50, 50);
 }

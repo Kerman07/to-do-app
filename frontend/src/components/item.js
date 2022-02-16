@@ -31,22 +31,22 @@ const Item = ({ item, setRerender }) => {
               type="text"
               onChange={handleChange}
               placeholder={item.content}
-              style={{ width: "100%" }}
+              style={{ width: "80%" }}
               required
             ></input>
           </td>
-          <td className="col-2 align-middle">
+          <td>
             <button
-              className="btn btn-outline-success"
+              className="btn btn-sm btn-outline-primary"
               name="edit"
               onClick={handleEdit}
             >
               Submit
             </button>
           </td>
-          <td className="col-2 align-middle">
+          <td>
             <button
-              className="btn btn-outline-danger"
+              className="btn btn-sm btn-outline-danger"
               name="cancel"
               onClick={() => setEdit(!edit)}
             >
@@ -57,17 +57,17 @@ const Item = ({ item, setRerender }) => {
       ) : (
         <tr>
           <td className="col-8 align-middle">{item.content}</td>
-          <td className="col-2 align-middle">
+          <td>
             <button
-              className="btn btn-outline-primary"
+              className="btn btn-sm btn-outline-primary item-btn"
               onClick={() => setEdit(!edit)}
             >
               Edit
             </button>
           </td>
-          <td className="col-2 align-middle">
+          <td>
             <button
-              className="btn btn-outline-danger"
+              className="btn btn-sm btn-outline-danger"
               name="delete"
               onClick={handleDelete}
             >

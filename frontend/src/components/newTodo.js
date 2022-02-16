@@ -14,9 +14,9 @@ const NewTodo = ({ setRerender }) => {
   };
 
   return (
-    <div className="container col-6">
+    <div>
       <form onSubmit={handleCreate}>
-        <div className="form-group">
+        <div className="flexbox">
           <label className="custom-field new-todo">
             <input
               type="text"
@@ -27,12 +27,9 @@ const NewTodo = ({ setRerender }) => {
             />
             <span className="placeholder">New Todo:</span>
           </label>
-        </div>
 
-        <div className="form-group">
           <button
-            className="btn btn-success"
-            style={{ display: "inline", float: "none" }}
+            className="btn btn-success create-btn new-todo"
             type="submit"
           >
             Create
