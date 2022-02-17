@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import userService from "../services/users.js";
 import Notification from "./notification.js";
@@ -72,9 +72,9 @@ const Login = ({ setRerender }) => {
           <div className="border-top pt3">
             <small className="text-muted">
               Don't have an account?{" "}
-              <a className="ml-2" href="/register">
+              <Link className="ml-2" to="/register">
                 Sign Up
-              </a>
+              </Link>
             </small>
           </div>
         </div>
