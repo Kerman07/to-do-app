@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import userService from "../services/users.js";
 import Notification from "./notification.js";
 import { setNotification } from "../reducers/notificationReducer.js";
+import CsrfToken from "./csrfToken.js";
 
 const Login = ({ setRerender }) => {
   const [username, setUsername] = useState("");
@@ -33,6 +34,7 @@ const Login = ({ setRerender }) => {
           <legend className="border-bottom mb-4">Log In</legend>
 
           <form onSubmit={handleLogin}>
+            <CsrfToken />
             <div className="form-group">
               <label className="custom-field">
                 <input

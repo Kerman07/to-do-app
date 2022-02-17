@@ -6,6 +6,7 @@ import axios from "axios";
 import Login from "./components/login.js";
 import Home from "./components/home.js";
 import Register from "./components/register.js";
+import { getCookie } from "./components/csrfToken.js";
 
 const App = () => {
   // eslint-disable-next-line no-unused-vars
@@ -16,6 +17,7 @@ const App = () => {
     if (localStorage.getItem("LOGGED_USER")) {
       axios.defaults.headers.common["Authorization"] =
         localStorage.getItem("REACT_TOKEN_AUTH");
+      axios.defaults.headers.common["X-CSRFToken"] = getCookie("csrftoken");
       dispatch(getTodos());
     }
   }, [rerender, dispatch]);

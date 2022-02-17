@@ -4,6 +4,7 @@ import { useHistory, Link } from "react-router-dom";
 import { setNotification } from "../reducers/notificationReducer";
 import userService from "../services/users";
 import Notification from "./notification";
+import CsrfToken from "./csrfToken";
 
 const Register = ({ setRerender }) => {
   const [username, setUsername] = useState("");
@@ -39,6 +40,7 @@ const Register = ({ setRerender }) => {
       <div className="col-6 container">
         <legend className="border-bottom mb-4">Register</legend>
         <form onSubmit={handleCreate}>
+          <CsrfToken />
           <div className="form-group">
             <label className="custom-field">
               <input
