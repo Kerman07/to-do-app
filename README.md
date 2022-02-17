@@ -1,7 +1,7 @@
 # To Do App
-* made with Django
-* allows registered users to have a personal to-do list
-* items can be added, edited and deleted
+* backend: Django REST framework
+* frontend: React/Redux
+* testing done with Cypress and Django testserver
 
 # Link
 [django-to-do-application.herokuapp.com](https://django-to-do-application.herokuapp.com)
